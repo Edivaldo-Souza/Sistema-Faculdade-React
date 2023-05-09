@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import TelaPrincipal from "./pages/TelaPrincipal"
+import Professor from "./pages/Professor";
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import './App.css';
+import Aluno from "./pages/Aluno";
+import Disciplina from "./pages/Disciplina";
+import Turma from "./pages/Turma";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Routes>
+        <Route index element={<Login/>}/>
+        <Route path="/main" element={<TelaPrincipal/>}/>
+        <Route path='/Professores' element={<Professor/>}/>
+        <Route path='/Alunos' element={<Aluno/>}/>
+        <Route path="/Disciplinas" element={<Disciplina/>}/>
+        <Route path="/Turmas" element={<Turma/>}/>
+      </Routes>
+    </BrowserRouter>
     </div>
+    
   );
 }
 
