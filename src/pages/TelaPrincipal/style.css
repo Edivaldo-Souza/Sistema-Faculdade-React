@@ -2,15 +2,15 @@
 .container{
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
-
+    display: flex;
+    min-height: 100vh;
 }
 
 .options-container{
     background-color: #0A0A0A;
     width:30%;
-    height: 100vh;
     padding: 20px 10px;
-    position: absolute;
+    
 }
 
 .options-container button{

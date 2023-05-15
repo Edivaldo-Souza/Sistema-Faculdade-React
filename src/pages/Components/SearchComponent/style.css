@@ -1,0 +1,151 @@
+.busca-section{
+    margin: 70px 20px 20px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px 8px 8px 8px;
+    min-width: 80%;
+
+}
+
+.searchbar{
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+.searchbar input{
+    width: 30%;
+    height: 40px;
+    border-radius: 15px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #FFD600;
+    color: black;
+}
+
+.searchbar img{
+    max-width: 4%;
+    justify-content: right;
+    cursor: pointer;
+}
+
+.searchbar button{
+    background-color: #FFD600;
+    border-width: 0px;
+    border-radius: 10px;
+    height: 30px;
+    width: 10%;
+    margin: 10px;
+    cursor: pointer;
+    
+}
+
+.resultados{
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px;
+    width: 100%;;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #0A0A0A;
+    border-radius: 15px;
+    background-color: #FFD600;
+}
+
+.result{
+    width:95%;
+    max-height: 20%;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background-color: #0A0A0A;
+    padding-left: 20px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+
+}
+
+.result p{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.result img{
+    width: 3%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#pop-up-create{
+    display: none;
+}
+
+#pop-up-update{
+    display: none;
+}
+
+#pop-up-view{
+    display: none;
+}
+
+#pop-up-delete{
+    display: none;
+}
+
+.pop-up-inputs{
+    display: block;
+}
+
+.pop-up-inputs input{
+    width: 70%;
+    border-radius: 5px;
+    padding: 5px;
+    border-style: solid;
+    border-color: #FFD600;
+    margin-bottom: 5px;
+}
+
+.pop-up-inputs button{
+    border-width: 0px;
+    border-radius: 7px;
+    background-color: #FFD600;
+    color: white;
+    width: 30%;
+    cursor: pointer;
+}
+
+.open-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Estilos do pop-up */
+  .popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 9999;
+  }
+  
+  /* Estilos do botão de fechar */
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  /* Estilos do conteúdo do pop-up */
+  .popup-content {
+    margin-bottom: 10px;
+  }

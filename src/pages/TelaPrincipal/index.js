@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./TelaInicial.css";
+import "./style.css";
 import axios from "axios";
 
 function toggleDp(){

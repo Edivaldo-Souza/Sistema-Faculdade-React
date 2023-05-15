@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import req from "../requests"
-import "./Login.css"
+import req from "../../requests"
+import "./style.css"
 import { useEffect, useState } from "react"
 
 function Login(){
@@ -22,8 +22,6 @@ function Login(){
         .then(response => setLogin(response.json)
         .catch(error => console.log(error)))
     }
-
-    
 
     return(
         <div>
