@@ -1,0 +1,39 @@
+.back-to-menu{
+    color: white;
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    padding: 0%;
+    margin: 2rem 0rem;
+    font-size: 40px;
+    font-weight: 700;
+}
+span{
+    color: #FFD600;
+}
+.options-container{
+    background-color: #0A0A0A;
+    width:20%;
+    padding: 20px 10px;
+    
+}
+.options-container button{
+    background-color: #FFD600;
+    color:#3C3200;
+    font-weight: bolder;
+    border-color: #3C3200;
+    border-width: 0px;
+    border-radius: 12px;
+    height: 2rem;
+    width: 90%;
+    margin: 5px 10px;
+    cursor: pointer;
+}
+.options-container button:hover{
+    background-color: #FFD91A;
+    border: 1px #000000 solid;
+}
+.options-container button:active{
+    background-color: #E6BF00;
+    border: 1px #000000 double;
+}
