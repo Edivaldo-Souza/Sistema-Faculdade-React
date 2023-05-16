@@ -112,6 +112,10 @@
     display: none;
 }
 
+#pop-up-inputs{
+    display: flex;
+}
+
 .pop-up-inputs{
     display: block;
 }
