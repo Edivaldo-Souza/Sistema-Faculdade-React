@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Professor from "./pages/Professor";
 import Disciplina from "./pages/Disciplina";
 import Turma from "./pages/Turma";
+import Cadastro from "./pages/Cadastro";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route index element={<Login/>}/>
         <Route path="/main" element={<TelaPrincipal/>}/>
+        <Route path="/Cadastro" element={<Cadastro/>}/>
         <Route path='/Alunos' element={<Aluno/>}/>
         <Route path="/Professores" element={<Professor/>}/>
         <Route path="/Disciplinas" element={<Disciplina/>}/>
