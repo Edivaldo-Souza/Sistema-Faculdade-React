@@ -40,7 +40,7 @@ function Login(){
             </Link>
             
             
-            <Link>
+            <Link to = "/Cadastro">
                 <button class="botãocadastrar">Cadastrar</button>
             </Link>
             

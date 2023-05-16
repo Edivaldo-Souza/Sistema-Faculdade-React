@@ -3,6 +3,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import './App.css';
 import Aluno from "./pages/Aluno";
 import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Routes>
         <Route index element={<Login/>}/>
         <Route path="/main" element={<TelaPrincipal/>}/>
-        
+        <Route path="/Cadastro" element={<Cadastro/>}/>
         <Route path='/Alunos' element={<Aluno/>}/>
       </Routes>
     </BrowserRouter>
