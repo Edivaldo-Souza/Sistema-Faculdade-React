@@ -1,6 +1,11 @@
 import { Component } from "react";
 import "./style.css"
 import axios from "axios";
+import api from "../../ApiAccess";
+import search2_src from "../../../resources/lupa_2.png"
+import search_src from "../../../resources/lupa.png"
+import edit_src from "../../../resources/ferramenta-lapis_2.png"
+import delete_src from "../../../resources/lixeira_2.png"
 
 var uuid
 var listaDisciplinas
@@ -29,10 +34,10 @@ class SearchComponentTurma extends Component{
     getProfessores = async(id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/professor/cpf/${id}`
+            Url = `${api}api/turma/cpf/${id}`
         }
         else{
-            Url = "http://localhost:8080/api/professor"
+            Url = `${api}/api/professor`
         }
 
         await axios({
@@ -51,10 +56,10 @@ class SearchComponentTurma extends Component{
     getDisciplinas = async(id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/disciplina/codigo/${id}`
+            Url = `${api}/api/disciplina/codigo/${id}`
         }
         else{
-            Url = "http://localhost:8080/api/disciplina"
+            Url = `${api}/api/disciplina"`
         }
 
         await axios({
@@ -73,10 +78,10 @@ class SearchComponentTurma extends Component{
     getTurmas = (id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/turma/${id}`
+            Url = `${api}/api/turma/${id}`
         }
         else{
-            Url = "http://localhost:8080/api/turma"
+            Url = `${api}/api/turma`
         }
 
         axios({
@@ -295,9 +300,9 @@ class SearchComponentTurma extends Component{
                     <p className="nomeAluno">{e.discCod}</p>
                     <p className="matricula">{e.horario}</p>
                     
-                    <img className="lupa" onClick={()=>{this.setViewTurma(e)}} src="resources/lupa_2.png"/>
-                    <img onClick={()=>{this.setPutTurmas(e)}} src="resources/ferramenta-lapis_2.png"/>
-                    <img onClick={()=>{this.setDeleteTurma(e)}} src="resources/lixeira_2.png"/>
+                    <img className="lupa" onClick={()=>{this.setViewTurma(e)}} src={search2_src}/>
+                    <img onClick={()=>{this.setPutTurmas(e)}} src={edit_src}/>
+                    <img onClick={()=>{this.setDeleteTurma(e)}} src={delete_src}/>
                 </div>
             )
 
@@ -308,8 +313,8 @@ class SearchComponentTurma extends Component{
             <div className="busca-section">
                 <div className="searchbar">
                 <input id="searchInput" type="text" placeholder="Pesquisar..."/>
-                <img className="lupa" src="resources/lupa.png" onClick={this.setResearchName} alt="lupa"/>
-                <div style={{display:"flex",width:"60%",justifyContent:"right"}}>
+                <img className="lupa" src={search_src} onClick={this.setResearchName} alt="lupa"/>
+                <div style={{display:"flex",width:"100vh",justifyContent:"right"}}>
                     <button onClick={this.setPostTurmas}>Adicionar</button>
                 </div>
                 </div>

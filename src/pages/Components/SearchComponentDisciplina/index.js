@@ -1,6 +1,11 @@
 import { Component } from "react";
 import "./style.css"
 import axios from "axios";
+import api from "../../ApiAccess";
+import search2_src from "../../../resources/lupa_2.png"
+import search_src from "../../../resources/lupa.png"
+import edit_src from "../../../resources/ferramenta-lapis_2.png"
+import delete_src from "../../../resources/lixeira_2.png"
 
 var uuid
 
@@ -23,10 +28,10 @@ class SearchComponentDisciplina extends Component{
     getDisciplinas = (id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/disciplina/${id}`
+            Url = `${api}/api/disciplina/${id}`
         }
         else{
-            Url = "http://localhost:8080/api/disciplina"
+            Url = `${api}/api/disciplina`
         }
 
         axios({
@@ -50,7 +55,7 @@ class SearchComponentDisciplina extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:"http://localhost:8080/api/disciplina",
+            url:`${api}/api/disciplina`,
             data:{
                 nome:inputs[0].value,
                 codigo:inputs[1].value,
@@ -82,7 +87,7 @@ class SearchComponentDisciplina extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:"http://localhost:8080/api/disciplina",
+            url:`${api}/api/disciplina`,
             data:{
                 nome:inputs[0].value,
                 codigo:inputs[1].value,
@@ -118,7 +123,7 @@ class SearchComponentDisciplina extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:`http://localhost:8080/api/disciplina/${uuid}`,
+            url:`${api}/api/disciplina/api/disciplina/${uuid}`,
             
         })
         .then(()=>{
@@ -193,9 +198,9 @@ class SearchComponentDisciplina extends Component{
                     <p className="nomeAluno">{e.nome}</p>
                     <p className="matricula">{e.codigo}</p>
                     
-                    <img className="lupa" onClick={()=>{this.setViewDisciplina(e)}} src="resources/lupa_2.png"/>
-                    <img onClick={()=>{this.setPutDisciplinas(e)}} src="resources/ferramenta-lapis_2.png"/>
-                    <img onClick={()=>{this.setDeleteDisciplina(e)}} src="resources/lixeira_2.png"/>
+                    <img className="lupa" onClick={()=>{this.setViewDisciplina(e)}} src={search2_src}/>
+                    <img onClick={()=>{this.setPutDisciplinas(e)}} src={edit_src}/>
+                    <img onClick={()=>{this.setDeleteDisciplina(e)}} src={delete_src}/>
                 </div>
             )
 
@@ -206,8 +211,8 @@ class SearchComponentDisciplina extends Component{
             <div className="busca-section">
                 <div className="searchbar">
                 <input id="searchInput" type="text" placeholder="Pesquisar..."/>
-                <img className="lupa" src="resources/lupa.png" onClick={this.setResearchName} alt="lupa"/>
-                <div style={{display:"flex",width:"60%",justifyContent:"right"}}>
+                <img className="lupa" src={search_src} onClick={this.setResearchName} alt="lupa"/>
+                <div style={{display:"flex",width:"100vh",justifyContent:"right"}}>
                     <button onClick={this.togglePopUpCreate}>Adicionar</button>
                 </div>
                 </div>

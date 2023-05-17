@@ -7,31 +7,32 @@ import search_src from "../../../resources/lupa.png"
 import edit_src from "../../../resources/ferramenta-lapis_2.png"
 import delete_src from "../../../resources/lixeira_2.png"
 
+
 var uuid
 
-class SearchComponentProfessor extends Component{
+class Teste extends Component{
     state = {
         entities:[],
         nome:""
     }
 
     componentDidMount(){
-        this.setState({nome:this.props.nomeDoProf})
-        this.getProfessores(this.state.nome);
+        this.setState({nome:this.props.nomeDoAluno})
+        this.getAlunos(this.state.nome);
     }
 
     setResearchName = () =>{
         let input = document.getElementById("searchInput")
-        this.getProfessores(input.value)
+        this.getAlunos(input.value)
     }
 
-    getProfessores = (id) =>{
+    getAlunos = (id) =>{
         let Url
         if(id!==undefined){
-            Url = `${api}/api/professor/${id}`
+            Url = `${api}/api/aluno/${id}`
         }
         else{
-            Url = `${api}/api/professor`
+            Url = `${api}/api/aluno`
         }
 
         axios({
@@ -47,7 +48,7 @@ class SearchComponentProfessor extends Component{
         .catch(error => console.log(error))
     }
 
-    postProfessor = () => {
+    postAlunos = () => {
         let inputs = document.getElementsByClassName("post-dataInput")
 
         axios({
@@ -55,23 +56,23 @@ class SearchComponentProfessor extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:`${api}/api/professor`,
+            url:`${api}/api/aluno`,
             data:{
                 nome:inputs[0].value,
                 endereco:inputs[1].value,
-                cpf:inputs[2].value,
+                matricula:inputs[2].value,
                 senha:inputs[3].value
             }
         })
         .then(()=>{
             this.togglePopUpCreate()
-            alert("Professor Cadastrado")
-            this.getProfessores()
+            alert("Aluno Cadastrado")
+            this.getAlunos()
         })
         .catch(error => console.log(error))
     }
 
-    setPutProfessores = (aluno) =>{
+    setPutAlunos = (aluno) =>{
         let inputs = document.getElementsByClassName("put-dataInput")
         this.togglePopUpUpdate()
 
@@ -81,7 +82,7 @@ class SearchComponentProfessor extends Component{
         uuid = aluno.uuid
     }
 
-    putProfessores = () => {
+    putAlunos = () => {
         let inputs = document.getElementsByClassName("put-dataInput")
 
         axios({
@@ -89,7 +90,7 @@ class SearchComponentProfessor extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:`${api}/api/professor`,
+            url:`${api}/api/aluno`,
             data:{
                 nome:inputs[0].value,
                 endereco:inputs[1].value,
@@ -99,41 +100,41 @@ class SearchComponentProfessor extends Component{
         })
         .then(()=>{
             this.togglePopUpUpdate()
-            alert("Professor Alterado")
-            this.getProfessores()
+            alert("Aluno Alterado")
+            this.getAlunos()
         })
         .catch(error => console.log(error))
     }
 
-    setViewProfessor = (prof) =>{
+    setViewAlunos = (aluno) =>{
         let inputs = document.getElementsByClassName("view-dataInput")
         this.togglePopUpView()
 
-        inputs[0].value = prof.nome
-        inputs[1].value = prof.endereco
-        inputs[2].value = prof.cpf
+        inputs[0].value = aluno.nome
+        inputs[1].value = aluno.endereco
+        inputs[2].value = aluno.matricula
     }
 
-    setDeleteProfessor = (prof) =>{
+    setDeleteAlunos = (aluno) =>{
         let text = document.getElementsByClassName("msg-confirmacao")
         this.togglePopUpDelete()
-        text[0].innerHTML = `Deseja excluir o usuário: ${prof.nome}`
-        uuid = prof.uuid
+        text[0].innerHTML = `Deseja excluir o usuário: ${aluno.nome}`
+        uuid = aluno.uuid
     }
 
-    deleteProfessores = () =>{
+    deleteAlunos = () =>{
         axios({
             method:"delete",
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:`${api}/api/professor${uuid}`,
+            url:`${api}/api/aluno${uuid}`,
             
         })
         .then(()=>{
             this.togglePopUpDelete()
-            alert("Professor Deletado")
-            this.getProfessores()
+            alert("Aluno Deletado")
+            this.getAlunos()
         })
         .catch(error => console.log(error))
     }
@@ -200,11 +201,11 @@ class SearchComponentProfessor extends Component{
             return(
                 <div className="result" key={index}>
                     <p className="nomeAluno">{e.nome}</p>
-                    <p className="matricula">{e.cpf}</p>
+                    <p className="matricula">{e.matricula}</p>
                     
-                    <img className="lupa" onClick={()=>{this.setViewProfessor(e)}} src={search2_src}/>
-                    <img onClick={()=>{this.setPutProfessores(e)}} src={edit_src}/>
-                    <img onClick={()=>{this.setDeleteProfessor(e)}} src={delete_src}/>
+                    <img className="lupa" onClick={()=>{this.setViewAlunos(e)}} src={search2_src}/>
+                    <img onClick={()=>{this.setPutAlunos(e)}} src={edit_src}/>
+                    <img onClick={()=>{this.setDeleteAlunos(e)}} src={delete_src}/>
                 </div>
             )
 
@@ -212,64 +213,64 @@ class SearchComponentProfessor extends Component{
 
         return(
             <div>
-            <div className="busca-section">
-                <div className="searchbar">
-                <input id="searchInput" type="text" placeholder="Pesquisar..."/>
-                <img className="lupa" src={search_src} onClick={this.setResearchName} alt="lupa"/>
-                <div style={{display:"flex",width:"100vh",justifyContent:"right"}}>
-                    <button onClick={this.togglePopUpCreate}>Adicionar</button>
-                </div>
-                </div>
-                <div className="resultados">
-                    {entities}        
-                </div>
-            </div>
-            <div id="pop-up-create" className="popup">
-                <span className="close-button" onClick={this.togglePopUpCreate}>&times;</span>
-                <div className="popup-content">
-                    <h2>Novo Professor</h2>
-                    <div className="pop-up-inputs">
-                        <input className="post-dataInput" type="text" placeholder="Nome"/>
-                        <input className="post-dataInput" type="text" placeholder="Endereço"/>
-                        <input className="post-dataInput" text="text" placeholder="CPF"/>
-                        <input className="post-dataInput" type="text" placeholder="Senha"/>
-                        <button onClick={this.postProfessor}>Salvar</button>
+                <div className="busca-section">
+                    <div className="searchbar">
+                        <input id="searchInput" type="text" placeholder="Pesquisar..."/>
+                        <img className="lupa" src={search_src} onClick={this.setResearchName} alt="lupa"/>
+                        <div style={{display:"flex",width:"100vh",justifyContent:"right"}}>
+                            <button onClick={this.togglePopUpCreate}>Adicionar</button>
+                        </div>
+                    </div>
+                    <div className="resultados">
+                        {entities}        
                     </div>
                 </div>
-            </div>
+                <div id="pop-up-create" className="popup">
+                    <span className="close-button" onClick={this.togglePopUpCreate}>&times;</span>
+                    <div className="popup-content">
+                        <h2>Novo Aluno</h2>
+                        <div className="pop-up-inputs">
+                            <input className="post-dataInput" type="text" placeholder="Nome"/>
+                            <input className="post-dataInput" type="text" placeholder="Endereço"/>
+                            <input className="post-dataInput" text="text" placeholder="Matrícula"/>
+                            <input className="post-dataInput" type="text" placeholder="Senha"/>
+                            <button onClick={this.postAlunos}>Salvar</button>
+                        </div>
+                    </div>
+                </div>
             <div id="pop-up-update" className="popup">
                 <span className="close-button" onClick={this.togglePopUpUpdate}>&times;</span>
                 <div className="popup-content">
-                    <h2>Editar Professor</h2>
+                    <h2>Editar Aluno</h2>
                     <div className="pop-up-inputs">
                         <input className="put-dataInput" type="text" placeholder="Nome"/>
                         <input className="put-dataInput" type="text" placeholder="Endereço"/>
                         <input className="put-dataInput" type="text" placeholder="Senha"/>
-                        <button onClick={this.putProfessores}>Salvar</button>
+                        <button onClick={this.putAlunos}>Salvar</button>
                     </div>
                 </div>
             </div>
             <div id="pop-up-view" className="popup">
                 <span className="close-button" onClick={this.togglePopUpView}>&times;</span>
                 <div className="popup-content">
-                    <h2>Consultar Professor</h2>
+                    <h2>Consultar Aluno</h2>
                     <div className="pop-up-inputs">
                         <h3>Nome:</h3>
                         <input className="view-dataInput" type="text" placeholder="Nome" readOnly/>
                         <h3>Endereço:</h3>
                         <input className="view-dataInput" type="text" placeholder="Endereço" readOnly/>
-                        <h3>CPF:</h3>
-                        <input className="view-dataInput" type="text" placeholder="CPF" readOnly/>
+                        <h3>Matrícula:</h3>
+                        <input className="view-dataInput" type="text" placeholder="Matrícula" readOnly/>
                     </div>
                 </div>
             </div>
             <div id="pop-up-delete" className="popup">
                 <span className="close-button" onClick={this.togglePopUpDelete}>&times;</span>
                 <div className="popup-content">
-                    <h2>Excluir Professor</h2>
+                    <h2>Excluir Aluno</h2>
                     <div className="pop-up-inputs">
                         <p className="msg-confirmacao"></p>
-                        <button onClick={this.deleteProfessores}>Confirmar</button>
+                        <button onClick={this.deleteAlunos}>Confirmar</button>
                     </div>
                 </div>
             </div>
@@ -280,4 +281,4 @@ class SearchComponentProfessor extends Component{
     
 }
 
-export default SearchComponentProfessor;
+export default Teste;

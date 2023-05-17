@@ -1,8 +1,8 @@
 .busca-section{
-    margin: 0;
-    padding: 0;
+    margin: 70px 20px 20px;
     background-color: white;
-    border-radius: 8px;
+    padding: 40px;
+    border-radius: 8px 8px 8px 8px;
     min-width: 80%;
 
 }
@@ -30,14 +30,14 @@
 }
 
 .searchbar button{
-    background-color: aqua;
+    background-color: #FFD600;
     color:#3C3200;
     font-weight: bolder;
     border: solid 1px #3C3200;
     border-width: 0px;
     border-radius: 12px;
     height: 2rem;
-    width: 8rem;
+    width: 20%;
     margin: 5px 10px;
     cursor: pointer;
 }
@@ -65,7 +65,7 @@
 }
 
 .result{
-    width:80%;
+    width:95%;
     max-height: 20%;
     position: relative;
     display: inline-flex;

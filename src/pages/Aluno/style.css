@@ -23,6 +23,61 @@
     cursor: pointer;
 }
 
+.nomeAluno{
+    width: 50%;
+}
+
+.matricula{
+    width: 45%;
+}
+
+#nomeDisciplina{
+    width: 50%;
+}
+
+#horario{
+    width:40%;
+}
+
+#lapis{
+    margin-right: 25px;
+}
+
+.info-section{
+    background-color: white;
+    width: 50%;
+}
+
+.info{
+    position: relative;
+    padding: 10px;
+}
+
+.dados{
+   margin-right: 80%;
+   margin-bottom: 20px;
+   border-width: 2px;
+   border-style: solid;
+   border-radius: 10px; 
+   border-color: #FFD600;
+   padding: 10px;
+}
+
+.botaoInfo{
+    width: 30%;
+    height: 30px;
+    background-color: #FFD600;
+    border-width: 0px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.info h2{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0A0A0A;
+}
+
 .turmas{
     border: 20px;
     border-color: black;
@@ -40,4 +95,20 @@
 .lupa{
     max-width: 5%;
     margin-right: 10px;
+}
+
+.fotoPerfil{
+    width: 100%;
+    display: inline-block;
+    justify-content: center;
+}
+
+select{
+    margin-right: 80%;
+   margin-bottom: 20px;
+   border-width: 2px;
+   border-style: solid;
+   border-radius: 10px; 
+   border-color: #FFD600;
+   padding: 10px;
 }

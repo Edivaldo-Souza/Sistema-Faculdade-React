@@ -1,6 +1,12 @@
 import { Component } from "react";
 import "./style.css"
 import axios from "axios";
+import api from "../../ApiAccess";
+import search2_src from "../../../resources/lupa_2.png"
+import search_src from "../../../resources/lupa.png"
+import edit_src from "../../../resources/ferramenta-lapis_2.png"
+import delete_src from "../../../resources/lixeira_2.png"
+
 
 var uuid
 
@@ -23,10 +29,10 @@ class SearchComponent extends Component{
     getAlunos = (id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/aluno/${id}`
+            Url = `${api}/api/aluno/${id}`
         }
         else{
-            Url = "http://localhost:8080/api/aluno"
+            Url = `${api}/api/aluno`
         }
 
         axios({
@@ -50,7 +56,7 @@ class SearchComponent extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:"http://localhost:8080/api/aluno",
+            url:`${api}/api/aluno`,
             data:{
                 nome:inputs[0].value,
                 endereco:inputs[1].value,
@@ -84,7 +90,7 @@ class SearchComponent extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:"http://localhost:8080/api/aluno",
+            url:`${api}/api/aluno`,
             data:{
                 nome:inputs[0].value,
                 endereco:inputs[1].value,
@@ -122,7 +128,7 @@ class SearchComponent extends Component{
             headers:{
                 "Content-Type":"application/json; charset=UTF-8",
             },
-            url:`http://localhost:8080/api/aluno/${uuid}`,
+            url:`${api}/api/aluno${uuid}`,
             
         })
         .then(()=>{
@@ -197,9 +203,9 @@ class SearchComponent extends Component{
                     <p className="nomeAluno">{e.nome}</p>
                     <p className="matricula">{e.matricula}</p>
                     
-                    <img className="lupa" onClick={()=>{this.setViewAlunos(e)}} src="resources/lupa_2.png"/>
-                    <img onClick={()=>{this.setPutAlunos(e)}} src="resources/ferramenta-lapis_2.png"/>
-                    <img onClick={()=>{this.setDeleteAlunos(e)}} src="resources/lixeira_2.png"/>
+                    <img className="lupa" onClick={()=>{this.setViewAlunos(e)}} src={search2_src}/>
+                    <img onClick={()=>{this.setPutAlunos(e)}} src={edit_src}/>
+                    <img onClick={()=>{this.setDeleteAlunos(e)}} src={delete_src}/>
                 </div>
             )
 
@@ -207,31 +213,31 @@ class SearchComponent extends Component{
 
         return(
             <div>
-            <div className="busca-section">
-                <div className="searchbar">
-                <input id="searchInput" type="text" placeholder="Pesquisar..."/>
-                <img className="lupa" src="resources/lupa.png" onClick={this.setResearchName} alt="lupa"/>
-                <div style={{display:"flex",width:"60%",justifyContent:"right"}}>
-                    <button onClick={this.togglePopUpCreate}>Adicionar</button>
-                </div>
-                </div>
-                <div className="resultados">
-                    {entities}        
-                </div>
-            </div>
-            <div id="pop-up-create" className="popup">
-                <span className="close-button" onClick={this.togglePopUpCreate}>&times;</span>
-                <div className="popup-content">
-                    <h2>Novo Aluno</h2>
-                    <div className="pop-up-inputs">
-                        <input className="post-dataInput" type="text" placeholder="Nome"/>
-                        <input className="post-dataInput" type="text" placeholder="Endereço"/>
-                        <input className="post-dataInput" text="text" placeholder="Matrícula"/>
-                        <input className="post-dataInput" type="text" placeholder="Senha"/>
-                        <button onClick={this.postAlunos}>Salvar</button>
+                <div className="busca-section">
+                    <div className="searchbar">
+                        <input id="searchInput" type="text" placeholder="Pesquisar..."/>
+                        <img className="lupa" src={search_src} onClick={this.setResearchName} alt="lupa"/>
+                        <div style={{display:"flex",width:"100vh",justifyContent:"right"}}>
+                            <button onClick={this.togglePopUpCreate}>Adicionar</button>
+                        </div>
+                    </div>
+                    <div className="resultados">
+                        {entities}        
                     </div>
                 </div>
-            </div>
+                <div id="pop-up-create" className="popup">
+                    <span className="close-button" onClick={this.togglePopUpCreate}>&times;</span>
+                    <div className="popup-content">
+                        <h2>Novo Aluno</h2>
+                        <div className="pop-up-inputs">
+                            <input className="post-dataInput" type="text" placeholder="Nome"/>
+                            <input className="post-dataInput" type="text" placeholder="Endereço"/>
+                            <input className="post-dataInput" text="text" placeholder="Matrícula"/>
+                            <input className="post-dataInput" type="text" placeholder="Senha"/>
+                            <button onClick={this.postAlunos}>Salvar</button>
+                        </div>
+                    </div>
+                </div>
             <div id="pop-up-update" className="popup">
                 <span className="close-button" onClick={this.togglePopUpUpdate}>&times;</span>
                 <div className="popup-content">
