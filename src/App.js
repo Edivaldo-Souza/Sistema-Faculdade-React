@@ -7,7 +7,7 @@ import Aluno from "./pages/Aluno";
 import Professor from "./pages/Professor";
 import Turma from './pages/Turma';
 import Disciplina from "./pages/Disciplina";
-import Teste from './pages/Components/Teste';
+import Teste from './pages/Teste';
 
 function App() {
   return (
@@ -27,8 +27,9 @@ function App() {
       </BrowserRouter>
     </div>
     
-  );
-}
-/*
+    );
+  }
+  /*
+  
 */
 export default App;

@@ -24,26 +24,21 @@ function Login(){
     }
 
     return(
-        <div>
-            <div class="centro">
-            <h2 class="h2class">Usuário:</h2>
-            <input class ="imput" type="text"/>
-            </div>
-            <div class="centro">
-            <h2 class="h2class">Senha:</h2>
-            <input class ="imput" type="password"/>
-            </div>
-            <div class="botões">
-
-            <Link to="/main">
-                <button onClick={login} class="botãoentrar">Entrar</button>
-            </Link>
-            
-            
-            <Link to = "/Cadastro">
-                <button class="botãocadastrar">Cadastrar</button>
-            </Link>
-            
+        <div className="background">
+            <div className="login-form">
+                <div className='logo'>Uni<span>G</span></div>
+                <div className="text-campo">
+                    <label for="input" className="login-label">Login</label>
+                    <input className ="input" id="input" type="text"/>
+                </div>
+                <div className="text-campo">
+                    <label for="pass" className="login-label">Senha</label>
+                    <input className ="input" id="pass" type="password"/>
+                </div>
+                <div className="botões">
+                    <Link to="/main"><button onClick={login} className="login-btn">Entrar</button></Link>
+                    <Link to = "/Cadastro"><button className="signup-btn">Cadastrar</button></Link>
+                </div>
             </div>
         </div>
     )
