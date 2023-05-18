@@ -2,58 +2,56 @@ import { Link } from "react-router-dom"
 import req from "../../requests"
 import "./style.css"
 import { useEffect, useState } from "react"
-
+import axios from "axios"
 function Cadastro(){
-    const [log,setLogin] = useState()
+    const [nome, setNome] = useState('');
+    const [matricula, setMatricula] = useState('');
+    const [senha, setSenha] = useState('');
+    const [senhaconfirmação, setconfirmação] = useState('');
+    const Cadast = async () =>{
+       
+        if (senha === senhaconfirmação) {
+            const aluno = {
+                nome: nome,
+                matricula: matricula,
+                senha: senha,
+            }
+            try {
+                const response = await axios.post("http://localhost:8080/api/Cadastro", aluno);
+                console.log('Cadastro realizado:', response.data);
 
-    const rbody = {
-        nome:"Joao",
-        senha:"1234"
+              } catch (error) {
+                console.error('Erro ao cadastrar:', error);
+              }
+        }
     }
-
-    const login = () =>{
-        fetch(req.login,{
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-              },
-            body: JSON.stringify(rbody)
-        })
-        .then(response => setLogin(response.json)
-        .catch(error => console.log(error)))
-    }
-
-    return(
-            <div class = "body">
-                <div class = "centro" >
-                <div class="areaLogin">
-                    <h2 class="h2class">Matricula:</h2>
-                    <div class="centro">
-                    <input class ="imput" type="text"/>
+    
+         return(
+            <div className="background">
+                <div className="signup-form">
+                    <div className='logo'>Uni<span>G</span></div>
+                    <div class="text-campo">
+                        <label for="matricula-input" className="login-label">Matricula</label> 
+                        <input className="input" id="matricula-input" type="text"  onChange={(event) => setMatricula(event.target.value)}/>
                     </div>
-                    <h2 class="h2class">Nome:</h2>
-                    <div class="centro">
-                    <input class ="imput" type="password"/>
+                    <div class="text-campo">
+                        <label for="name-input" className="login-label">Nome Completo</label>
+                        <input className="input" id="name-input" type="text" onChange={(event) => setNome(event.target.value)}/>
                     </div>
-                    <h2 class="h2class">Senha:</h2>
-                    <div class="centro">
-                    <input class ="imput" type="text"/>
+                    <div class="text-campo">
+                        <label for="pass-input" className="login-label">Senha</label>
+                        <input className="input" id="pass-input" type="password" onChange={(event) => setSenha(event.target.value)}/>
                     </div>
-                    <h2 class="h2class">Confirmar Senha:</h2>
-                    <div class="centro">
-                    <input class ="imput" type="password"/>
+                    <div class="text-campo">
+                        <label for="confirm-pass-input" className="login-label">Confirmar Senha</label>
+                        <input className="input" id="confirm-pass-input" type="password" onChange={(event) => setconfirmação(event.target.value)}/>
                     </div>
                     <div class="botões">
-
-                    <Link to="/main">
-                        <button onClick={login} class="botãocadastrar">Cadastrar</button>
-                    </Link>
-                    
+                        <Link to="/main"><button onClick={Cadast} class="signup-btn">Cadastrar</button></Link>
                     </div>
                 </div>
             </div>
-        </div>
-    )
-}
-
-export default Cadastro
+        )
+    }
+    
+    export default Cadastro
