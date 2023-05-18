@@ -11,8 +11,7 @@ class SearchComponentDisciplina extends Component{
     }
 
     componentDidMount(){
-        this.setState({nome:this.props.nomeDaDisciplina})
-        this.getDisciplinas(this.state.nome);
+        this.getDisciplinas();
     }
 
     setResearchName = () =>{
@@ -23,7 +22,7 @@ class SearchComponentDisciplina extends Component{
     getDisciplinas = (id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/disciplina/${id}`
+            Url = `http://localhost:8080/api/disciplina/codigo/${id}`
         }
         else{
             Url = "http://localhost:8080/api/disciplina"

@@ -1,39 +1,51 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import req from "../../requests"
 import "./style.css"
 import { useEffect, useState } from "react"
+import axios from "axios"
 
 function Cadastro(){
-    const [log,setLogin] = useState()
+    const navigate = useNavigate()
 
-    const rbody = {
-        nome:"Joao",
-        senha:"1234"
-    }
+    const post = () =>{
+        let inputs = document.getElementsByTagName("input")
 
-    const login = () =>{
-        fetch(req.login,{
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-              },
-            body: JSON.stringify(rbody)
+        axios({
+            method:"post",
+            headers:{
+                "Content-Type":"application/json; charset=UTF-8",
+            },
+            url:"http://localhost:8080/api/aluno",
+            data:{
+                nome:inputs[0].value,
+                endereco:inputs[1].value,
+                matricula:inputs[2].value,
+                senha:inputs[3].value,
+                diretorCod:inputs[5].value
+            }
         })
-        .then(response => setLogin(response.json)
-        .catch(error => console.log(error)))
+        .then(()=>{
+            alert("Usuário Cadastrado")
+            navigate("/")
+        })
+        .catch(error => console.log(error))
     }
 
     return(
             <div class = "body">
                 <div class = "centro" >
                 <div class="areaLogin">
-                    <h2 class="h2class">Matricula:</h2>
+                    <h2 class="h2class">Nome:</h2>
                     <div class="centro">
                     <input class ="imput" type="text"/>
                     </div>
-                    <h2 class="h2class">Nome:</h2>
+                    <h2 class="h2class">Endereço:</h2>
                     <div class="centro">
-                    <input class ="imput" type="password"/>
+                    <input class ="imput" type="text"/>
+                    </div>
+                    <h2 class="h2class">Matrícula:</h2>
+                    <div class="centro">
+                    <input class ="imput" type="text"/>
                     </div>
                     <h2 class="h2class">Senha:</h2>
                     <div class="centro">
@@ -43,12 +55,17 @@ function Cadastro(){
                     <div class="centro">
                     <input class ="imput" type="password"/>
                     </div>
+                    <h2 class="h2class">Código do Diretor:</h2>
+                    <div class="centro">
+                    <input class ="imput" type="text"/>
+                    </div>
                     <div class="botões">
 
-                    <Link to="/main">
-                        <button onClick={login} class="botãocadastrar">Cadastrar</button>
-                    </Link>
                     
+                        <button onClick={post}  class="botãocadastrar">Cadastrar</button>
+                    <Link to="/">
+                        <button  class="botãocadastrar">Voltar</button>
+                    </Link>
                     </div>
                 </div>
             </div>

@@ -11,8 +11,7 @@ class SearchComponentProfessor extends Component{
     }
 
     componentDidMount(){
-        this.setState({nome:this.props.nomeDoProf})
-        this.getProfessores(this.state.nome);
+        this.getProfessores();
     }
 
     setResearchName = () =>{
@@ -23,7 +22,7 @@ class SearchComponentProfessor extends Component{
     getProfessores = (id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/professor/${id}`
+            Url = `http://localhost:8080/api/professor/nome/${id}`
         }
         else{
             Url = "http://localhost:8080/api/professor"

@@ -55,7 +55,8 @@ class SearchComponent extends Component{
                 nome:inputs[0].value,
                 endereco:inputs[1].value,
                 matricula:inputs[2].value,
-                senha:inputs[3].value
+                senha:inputs[3].value,
+                diretorCod:''
             }
         })
         .then(()=>{

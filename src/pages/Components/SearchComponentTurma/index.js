@@ -17,8 +17,7 @@ class SearchComponentTurma extends Component{
     }
 
     componentDidMount(){
-        this.setState({nome:this.props.nomeDaDisc})
-        this.getTurmas(this.state.nome);
+        this.getTurmas();
     }
 
     setResearchName = () =>{
@@ -73,7 +72,7 @@ class SearchComponentTurma extends Component{
     getTurmas = (id) =>{
         let Url
         if(id!==undefined){
-            Url = `http://localhost:8080/api/turma/${id}`
+            Url = `http://localhost:8080/api/turma/codigo/${id}`
         }
         else{
             Url = "http://localhost:8080/api/turma"
@@ -295,9 +294,10 @@ class SearchComponentTurma extends Component{
                     <p className="nomeAluno">{e.discCod}</p>
                     <p className="matricula">{e.horario}</p>
                     
+
                     <img className="lupa" onClick={()=>{this.setViewTurma(e)}} src="resources/lupa_2.png"/>
-                    <img onClick={()=>{this.setPutTurmas(e)}} src="resources/ferramenta-lapis_2.png"/>
-                    <img onClick={()=>{this.setDeleteTurma(e)}} src="resources/lixeira_2.png"/>
+                    <img  onClick={()=>{this.setPutTurmas(e)}} src="resources/ferramenta-lapis_2.png"/>
+                    <img  onClick={()=>{this.setDeleteTurma(e)}} src="resources/lixeira_2.png"/>
                 </div>
             )
 
@@ -326,13 +326,13 @@ class SearchComponentTurma extends Component{
                             <div className="resultados">
                                 {listaDisciplinas}
                             </div>
-                            <button className="">Confirmar</button>
+                            
                         </div>
                         <div style={{marginRight:"10px",padding:"5px"}}>
                             <div className="resultados">
                                 {listaProfessores}
                             </div>
-                            <button className="">Confirmar</button>
+                            
                         </div>
                         
                         <div style={{display:"block",marginTop:"20px"}}>

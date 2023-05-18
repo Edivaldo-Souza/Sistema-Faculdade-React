@@ -1,26 +1,53 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import req from "../../requests"
 import "./style.css"
 import { useEffect, useState } from "react"
+import axios from "axios"
 
 function Login(){
-    const [log,setLogin] = useState()
+    const navigate = useNavigate()
 
-    const rbody = {
-        nome:"Joao",
-        senha:"1234"
+    
+
+    const sigin = () =>{
+        let inputs = document.getElementsByTagName("input")
+        axios({
+            method:"post",
+            headers:{
+                "Content-Type":"application/json; charset=UTF-8",
+            },
+            url:"http://localhost:8080/api/login",
+            data:{
+                nome:inputs[0].value,
+                senha:inputs[1].value,
+            }
+        })
+        .then(response=>{
+            console.log(response);
+            setSigin(inputs[0].value, response.headers.getAuthorization())
+            })
+        .catch(error => console.log(error))
     }
 
-    const login = () =>{
-        fetch(req.login,{
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-              },
-            body: JSON.stringify(rbody)
+    const setSigin = (userName, token) =>{
+        axios({
+            method:"get",
+            headers:{
+                "Content-Type":"application/json; charset=UTF-8",
+                "Authorization":token
+            },
+            url:`http://localhost:8080/api/usuario/${userName}`,
+    
         })
-        .then(response => setLogin(response.json)
-        .catch(error => console.log(error)))
+        .then(response=>{
+            console.log(response.data)
+            navigate("/main",{state:{
+                nome:userName,
+                token:token,
+                permissao:response.data.permissao
+            }})})    
+        .catch(error => console.log(error))
+
     }
 
     return(
@@ -35,9 +62,7 @@ function Login(){
             </div>
             <div class="botões">
 
-            <Link to="/main">
-                <button onClick={login} class="botãoentrar">Entrar</button>
-            </Link>
+            <button onClick={sigin} class="botãoentrar">Entrar</button>
             
             
             <Link to = "/Cadastro">
